@@ -7,8 +7,7 @@ const courseModel=require("../model/courses.model")
 const { validationResult}=require('express-validator')
 
 const validation = require('../validator/register.validation')
-const { log } = require("console")
-const e = require("express")
+
 
 app.post("/registration",validation,async(req,res)=>{
     // console.log(req.body);
