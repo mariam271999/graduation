@@ -69,10 +69,10 @@ const userSchema= mongoose.Schema({
         ref:"projects"
 
     }],
-    userTechnicalSkills:
-        [{type: String , 
-        ref:"technicalSkills"
-    }],
+    userSkills:
+    {type: String , 
+        ref:"Skills"
+    },
 
 })
 

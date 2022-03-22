@@ -19,13 +19,13 @@ module.exports={
 
             const userEmail =await userModel.findOne({email:userProps.email})
 
-            if(userEmail){
-                res.json("email is exist")
-            }else{
+            // if(userEmail){
+            //     res.json("email is exist")
+            // }else{
                await userModel.create(userProps)
                 res.json("success")//send userid
 
-            }
+            // }
 
          }else{
              res.send(err.array())

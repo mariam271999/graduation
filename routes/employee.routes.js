@@ -2,7 +2,6 @@ const app =require("express").Router()
 
 const employeeModule=require("../model/employee.model")
 
-const courseModel=require("../model/courses.model")
 
 const { validationResult}=require('express-validator')
 

@@ -2,10 +2,10 @@ const educationModel = require("../model/education.model")
 
 module.exports={
 
-    creat (req,res,next){
+    async    creat (req,res,next){
         const educationProps = req.body
         console.log(educationProps);
-      educationModel.create(educationProps)
+     await educationModel.create(educationProps)
         res.json()   
     },
 
@@ -15,18 +15,18 @@ module.exports={
 
     },
 
-    edit(req,res,next){
+   async edit(req,res,next){
         const id = req.params.id;
         const educationProps = req.body;
-        educationModel.findByIdAndUpdate({_id:id},educationProps)      
+       await educationModel.findByIdAndUpdate({_id:id},educationProps)      
     },
-    delete(req,res,next){
+   async delete(req,res,next){
         const id = req.params.id;
-        educationModel.findByIdAndRemove({_id:id})
+     await   educationModel.findByIdAndRemove({_id:id})
     },
-    findById(req,res,next){
-        const educationId = req.params.id;
-        educationModel.find({_id:educationId})
+   async findById(req,res,next){
+        const id = req.params.id;
+     await   educationModel.find({_id:id})
     }
 
 
