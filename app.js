@@ -13,6 +13,7 @@ const educationRoutes=require('./routes/education.routes')
 const jobRoutes=require('./routes/job.routes')
 const userRoutes=require('./routes/user.routes')
 const projectRoutes= require('./routes/project.routes')
+const skillRoutes=require('./routes/skill.routes')
 
 const mongoose= require("mongoose");
 
@@ -38,3 +39,4 @@ educationRoutes(app)
 jobRoutes(app)
 userRoutes(app)
 projectRoutes(app)
+skillRoutes(app)

@@ -4,13 +4,12 @@ const userModel = require("../model/user.model");
 module.exports={
 receiveEducation(req,res,next){
    
-    const usrId = req.params.userId;
+    const userId = req.params.userId;
     const educationProps = req.body;
    educationModel.create(educationProps)
-   educationId= res.json(educationId)["_id"]  
-    
-   
-    userModel.findByIdAndUpdate({_id:usrId},
+   let  educationId = educationProps._id
+//    educationId= res.json(educationId)["_id"]  
+    userModel.findByIdAndUpdate({_id:userId},
         {...{"userEducation":educationId}})      
 },
 
@@ -18,15 +17,22 @@ receiveProject(req,res,next){
 
     const userId = req.params.userId;
     const projectProps = req.body;
- educationModel.create(projectProps)
-    projectId= res.json(projectId)["_id"]  
+    educationModel.create(projectProps)
+    let projectId =projectProps._id
+    // projectId= res.json(projectId)["_id"]  
     oldUser=userModel.findById(usrId)
     userProjects=oldUser.projects
     userProjects.push(projectId)
 
-    userModel.findByIdAndUpdate({_id:usrId},
+    userModel.findByIdAndUpdate({_id:userId},
         {...{"userProject":userProjects}})      
+},
+receiveSkill(req,res,next){
+    const userId = req.params.userId;
+    const userSkill=req.body
+    
 }
+
     
 
 
