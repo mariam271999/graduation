@@ -23,7 +23,7 @@ module.exports={
                 res.json("email is exist")
             }else{
                await userModel.create(userProps)
-                res.json("success")
+                res.json("success")//send userid
 
             }
 
@@ -50,5 +50,19 @@ module.exports={
         }else{
             res.json({massege:"email not exist"})
         }
+    },
+
+    edit(req,res,next){
+        const id = req.params.id;
+        const userProps = req.body;
+        userModel.findByIdAndUpdate({_id:id},userProps)      
+    },
+    delete(req,res,next){
+        const id = req.params.id;
+        userModel.findByIdAndRemove({_id:id})
+    },
+    findById(req,res,next){
+        const id = req.params.id;
+        userModel.find({_id:id})
     }
 }

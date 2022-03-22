@@ -6,7 +6,7 @@ module.exports={
         const educationProps = req.body
         console.log(educationProps);
       educationModel.create(educationProps)
-        res.json("success")
+        res.json()   
     },
 
     async all(req,res,next){

@@ -53,20 +53,26 @@ const userSchema= mongoose.Schema({
         require:false
 
     },
+    courses:[String],
+
     userEducation:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:String,
         ref:"educations"
     },  
 
-    userJob:{
-        type:mongoose.Schema.Types.ObjectId,
+    userPreviousJob:{
+        type:String,
         ref:"jobs"
     },
     userProject:[{
-        type:mongoose.Schema.Types.ObjectId,
+        type:String,
         ref:"projects"
 
-    }]
+    }],
+    userTechnicalSkills:
+        [{type: String , 
+        ref:"technicalSkills"
+    }],
 
 })
 
