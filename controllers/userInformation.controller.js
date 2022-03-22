@@ -1,5 +1,6 @@
 const educationModel = require("../model/education.model");
 const userModel = require("../model/user.model");
+const skillModel = require('../model/skill.model')
 
 module.exports={
 receiveEducation(req,res,next){
@@ -30,6 +31,16 @@ receiveProject(req,res,next){
 receiveSkill(req,res,next){
     const userId = req.params.userId;
     const userSkill=req.body
+    skillModel.create(userSkill)
+    let skillId=userSkill._id
+    oldUser=userModel.findById(usrId)
+    userSkill=oldUser.skill
+    userSkill.push(skillId)
+    
+    
+    userModel.findByIdAndUpdate({_id:userId},
+        {...{"userSkill":userSkill}})   
+
     
 }
 
