@@ -1,38 +1,20 @@
-const app =require("express").Router()
+const courseController = require("../controllers/course.controller")
 
+module.exports = (app)=>{
 
-const courseModel=require("../model/courses.model")
+    app.post('/api/course',
+    courseController.creat)
 
-app.post('/addCourse',async (req,res)=>{
+    app.get('/api/course',
+    courseController.all)
 
-
-    const {
-
-        courseTittle,
-        hour,
-        instactorName,
-        prerequestSkill,
-        targetSkill,
-        link
-
-
-    }=req.body
-
-
-    await courseModel.insertMany({
-
-       courseTittle,
-        hour,
-        instactorName,
-        prerequestSkill,
-        targetSkill,
-        link
-
-    })
-    console.log("ok");
-
-    res.json("done")
-
-})
-
-module.exports=app
+    app.put('/api/course/:id',
+    courseController.edit);
+ 
+   app.delete('/api/course/:id',
+   courseController.delete);
+ 
+   app.get('/api/course/:id',
+   courseController.findById)
+    
+}
