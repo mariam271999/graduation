@@ -16,8 +16,19 @@ module.exports={
         const projectArray = req.body
         for(i=0;i<projectArray.length;i++){
             projectModel.create(projectArray)
-        }
-
-        
+        }     
+    },
+    edit(req,res,next){
+        const id = req.params.id;
+        const projectProps = req.body;
+        projectModel.findByIdAndUpdate({_id:id},projectProps)      
+    },
+    delete(req,res,next){
+        const id = req.params.id;
+        projectModel.findByIdAndRemove({_id:id})
+    },
+    findById(req,res,next){
+        const id = req.params.id;
+       projectModel.find({_id:id})
     }
 }
