@@ -22,8 +22,16 @@ module.exports={
             // if(userEmail){
             //     res.json("email is exist")
             // }else{
-               await userModel.create(userProps)
-                res.json("success")//send userid
+                let userId
+                await userModel.insertMany(userProps,async(err,userProps)=>{
+                    userId=userProps[0].id
+                    console.log(userId);
+                    res.json(userId)
+
+
+                })
+            //    await userModel.create(userProps)
+            //     res.json("success")//send userid
 
             // }
 

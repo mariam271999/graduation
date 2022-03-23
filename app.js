@@ -13,6 +13,8 @@ const jobRoutes=require('./routes/job.routes')
 const userRoutes=require('./routes/user.routes')
 const projectRoutes= require('./routes/project.routes')
 const skillRoutes=require('./routes/skill.routes')
+const courseRoutes =require('./routes/course.routes')
+const algorithmRoutes =require('./routes/algorithm.routes')
 
 
 const userInformationController=require('./routes/userInformation.routes')
@@ -42,5 +44,7 @@ jobRoutes(app)
 userRoutes(app)
 projectRoutes(app)
 skillRoutes(app)
+courseRoutes(app)
+algorithmRoutes(app)
 
 userInformationController(app)

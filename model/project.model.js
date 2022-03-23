@@ -22,7 +22,12 @@ const projectSchema =mongoose.Schema({
     projectSize:{
         type: String,
         require:true
-    }
+    },
+    projectSkill:[{
+        desc:String,
+        tool:String
+
+    }]
 
 })
 

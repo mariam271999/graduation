@@ -9,8 +9,7 @@ var SkillSchema=new Schema({
     desc:String
     ,
     tool:String
-    ,
-    level:String
+    
     
 }]
 })

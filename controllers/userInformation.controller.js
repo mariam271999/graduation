@@ -1,6 +1,8 @@
 const educationModel = require("../model/education.model");
 const userModel = require("../model/user.model");
 const skillModel = require('../model/skill.model')
+const jobModel = require('../model/job.model')
+const projectModel =require('../model/project.model')
 
 module.exports={
     async receiveEducation(req,res,next){
@@ -27,7 +29,7 @@ module.exports={
         const skillProps = req.body;
     
         var skillId 
-       const skill =await skillModel.insertMany(skillProps ,async(err ,skillProps)=>{
+      const skill= await skillModel.insertMany(skillProps ,async(err ,skillProps)=>{
             skillId  = skillProps[0].id
             console.log(skillId);
            await userModel.findByIdAndUpdate({_id:usrId},
@@ -38,21 +40,58 @@ module.exports={
        
         
     },
+    async receiveJob(req,res,next){
+   
+        const usrId = req.params.userId;
+        const jobProps = req.body;
+    
+        var jobId 
+      const job= await jobModel.insertMany(jobProps ,async(err ,jobProps)=>{
+            jobId  =jobProps[0].id
+            console.log(jobId);
+           await userModel.findByIdAndUpdate({_id:usrId},
+                {...{"userPreviousJob": jobId}})      
+       })
+       console.log(jobId);
+        res.json(job)
+    },
 
 
-receiveProject(req,res,next){
+ async receiveProject(req,res,next){
 
     const userId = req.params.userId;
     const projectProps = req.body;
-    educationModel.create(projectProps)
-    let projectId =projectProps._id
-    // projectId= res.json(projectId)["_id"]  
-    oldUser=userModel.findById(usrId)
-    userProjects=oldUser.projects
-    userProjects.push(projectId)
+    let projectId
+   const project= await projectModel.insertMany(projectProps,async (err,projectProps)=>{
+       res.json("success")
+    console.log(projectProps);
 
-    userModel.findByIdAndUpdate({_id:userId},
-        {...{"userProject":userProjects}})      
+    for(i=0;i<projectProps.length;i++){
+      projectId=projectProps[i].id
+      console.log(projectId); 
+
+      oldUser= await userModel.findById(userId)
+       userProjects=oldUser.userProject
+       userProjects.push(projectId)
+
+       await userModel.findByIdAndUpdate({_id:userId},
+        {...{"userProject":userProjects}})   
+    }
+  
+      
+      
+       
+      
+       
+
+
+   })
+//    console.log(projectId);
+//    res.json(project)
+    
+
+
+      
 }
 
 
