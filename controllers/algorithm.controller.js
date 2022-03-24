@@ -25,6 +25,7 @@ async getUserLevel(req,res,next){
       
       let count =0
 
+      let t =[]
      for (i=0; i<technicalSkills.length; i++) {
          
         for (let j = 0; j < projects.length; j++) {
@@ -44,18 +45,65 @@ async getUserLevel(req,res,next){
         for (let q = 0; q < courses.length; q++) {
             for (w=0;w< courses[q].targetSkills.length;w++) {
                 if(technicalSkills[i].tool==courses[q].targetSkills[w].tool){
-                    count=count+5
+                    if(courses[q].targetSkills[w].level=="high"){
+                        count=count+5
+                    }else if(courses[q].targetSkills[w].level=="medium"){
+                        count=count+3
+                    }else{
+                        count=count+1
+                    }
+                    
                 }
          
                 
             }
             
         }
+        if(count==10){
+            technicalSkills[i]={
+                tool:technicalSkills[i].tool,
+                desc:technicalSkills[i].desc,
+                level:"low"
+            }
+                t.push(technicalSkills[i])
+
+            }
+
+        
+
+        else if(count==20){
+            technicalSkills[i]={
+                tool:technicalSkills[i].tool,
+                desc:technicalSkills[i].desc,
+                level:"medium"
+
+            }
+               t.push(technicalSkills[i])
+
+
+        }
+        else if(count==30){
+            technicalSkills[i]={
+                tool:technicalSkills[i].tool,
+                desc:technicalSkills[i].desc,
+                level:"high"
+            }
+            t.push(technicalSkills[i])
+            
+        }
+      
+        
 
 
         console.log(technicalSkills[i].tool+"="+count);
+        
+       count=0
+      
+       await skillModel.findByIdAndUpdate({_id:user[0].userSkills},{...{"technicalSkills":t}})
+       
          
     }
+    
   
 
 

@@ -4,7 +4,5 @@ module.exports = (app)=>{
 
     app.post('/api/algorithm/:userId',
     algorithmController.getUserLevel)
-
-
     
 }
